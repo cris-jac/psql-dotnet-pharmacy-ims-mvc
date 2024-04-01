@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PharmaMVC.Data;
+using PharmaMVC.Interfaces;
+using PharmaMVC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

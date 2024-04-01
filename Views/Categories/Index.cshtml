@@ -1,0 +1,23 @@
+@using PharmaMVC.Models
+@model IEnumerable<Category>
+
+<html lang="en">
+
+<body>
+    <h1>List of categories</h1>
+    <hr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div>
+            <ul>
+                @foreach (var category in Model)
+                {
+                    <li>category.Name</li>
+                }
+            </ul>
+        </div>
+    }
+
+</body>
+
+</html>
