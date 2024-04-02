@@ -1,0 +1,43 @@
+@using PharmaMVC.Models;
+@model Category
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+@section title {
+    <h3>Add category</h3>
+    <hr class="my-2">
+}
+
+<div class="container d-flex flex-column align-items-center">
+    <form method="post" asp-controller="categories" asp-action="add">
+        <div class="row mb-2">
+            <div class="col-4">
+                <label asp-for="CategoryName" class="col-form-label">Categoria</label>
+            </div>
+            <div class="col-6">
+                <input type="text" asp-for="CategoryName" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4">
+                <label asp-for="SubcategoryName" class="col-form-label">Subcategoria</label>
+            </div>
+            <div class="col-6">
+                <input type="text" asp-for="SubcategoryName" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-4">
+                <input type="submit" class="btn btn-primary" value="Add" />
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </form>
+</div>

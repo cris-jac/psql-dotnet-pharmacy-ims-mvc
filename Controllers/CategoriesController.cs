@@ -20,4 +20,9 @@ public class CategoriesController : Controller
         var categories = await _categoryRepository.GetCategories();
         return View(categories);
     }
+
+    public IActionResult Add()
+    {
+        return View();
+    }
 }

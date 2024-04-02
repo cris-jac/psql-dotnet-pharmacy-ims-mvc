@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 
 app.UseRouting();
 

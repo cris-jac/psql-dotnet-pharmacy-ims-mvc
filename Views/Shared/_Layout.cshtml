@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmalardo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row;">
+        <div class="d-flex flex-column justify-content-between align-items-start col-auto min-vh-100 p-2"
+            style="background-color: #008980;">
+            <div>
+                <a href="/" class="text-white text-decoration-none d-flex align-items-center m-2" role="button">
+                    <img src="~/assets/PharmaLogo.png" alt="logo" height="40px" width="40px" />
+                    <div class="span">
+                        <span class="fs-5 fw-bolder" style="margin-left: 8px;">Pharmalardo</span>
+                    </div>
+                </a>
+
+                <hr class="text-white fw-bolder">
+
+                <ul class="nav nav-pills flex-column m-1">
+                    <li class="nav-item m-1">
+                        <a href="/" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-speedometer2"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Dashboard</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="#" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-people-fill"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">People</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="#" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-inboxes-fill fs-5"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Categories</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="#" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-tags fs-5"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Brands</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="/categories/add" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-capsule-pill fs-5"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Products</span>
+                                </div>
+                            </button>
+                        </a>
+
+                        @* <ul class="collapse flex-column inactive" id="productsmenu" data-bs-parent="#productsmenu">
+                        <li class="m-1">
+                        <a href="#" class="nav-link" style="text-decoration: none;">
+                        <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                        <i class="bi bi-capsule-pill fs-6"></i>
+                        <div class="span" style="margin-left: 12px;">
+                        <span class="fs-6">List of products</span>
+                        </div>
+                        </button>
+                        </a>
+                        </li>
+                        <li class="m-1">
+                        <a href="#" class="nav-link" style="text-decoration: none;">
+                        <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                        <i class="bi bi-capsule-pill fs-6"></i>
+                        <div class="span" style="margin-left: 12px;">
+                        <span class="fs-6">List of products</span>
+                        </div>
+                        </button>
+                        </a>
+                        </li>
+                        </ul> *@
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="#" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-receipt fs-5"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Orders</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="nav-item m-1">
+                        <a href="#" class="" style="text-decoration: none;">
+                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                                <i class="bi bi-person-fill-gear fs-5"></i>
+                                <div class="span" style="margin-left: 12px;">
+                                    <span class="fs-5">Account Settings</span>
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="m-2">
+                <a href="#" class="" style="text-decoration: none;">
+                    <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
+                        <i class="bi bi-box-arrow-left fs-5"></i>
+                        <div class="span" style="margin-left: 12px;">
+                            <span class="fs-5">Log out</span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="px-0" style="display: flex; flex-direction: column; width: 100%">
+
+            <div class="d-flex justify-content-between align-items-center p-2 w-100" style="background-color: #00A79D;">
+
+                <button class="border-0 btn btn-outline-light fs-5" onclick="return toggleSpans()">
+                    <i class="bi bi-list"></i>
+                </button>
+
+
+                <div class="d-flex flex-row align-items-center justify-content-center">
+                    <h5 class="text-white">Hello username</h5>
+                    <img src="https://cdn2.picryl.com/photo/1976/12/31/luis-alberto-spinetta-en-1976-0cb1df-640.jpg"
+                        alt="profile picture" width="50px" height="50px" style="border-radius: 50%; margin-left: 8px" />
+                </div>
+
+            </div>
+
+            <div class="container mx-auto">
+                <div class="pb-2">
+                    @RenderSection("title")
+                </div>
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function toggleSpans() {
+            var spans = document.querySelectorAll(".span")
+            spans.forEach(function (span) {
+                if (span.style.display === 'none') {
+                    span.style.display = 'inline';
+                } else {
+                    span.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
