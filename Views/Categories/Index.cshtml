@@ -1,36 +1,43 @@
-@using PharmaMVC.Models
 @model IEnumerable<Category>
 
-<html lang="en">
+@section title {
+    <h3>Categories</h3>
+    <hr class="my-2">
+}
 
-<head>
-    <title>MVC Document</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
-</head>
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
 
-<body>
-    <h1>List of categories</h1>
-    <hr>
-    @if (Model != null && Model.Count() > 0)
-    {
-        <div class="container">
-            <ul>
-                @foreach (var category in Model)
-                {
-                    <li>category.Name</li>
-                }
-            </ul>
-        </div>
-    }
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>@((category.IsActive) ? "Activo" : "No activo")</td>
+                    <td>
+                        <a class="btn btn-info" asp-controller="categories" asp-action="details" asp-route-id="@category.Id">
+                            Ver categoria
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
-    <div class="container">
-        <a type="button" class="btn btn-info d-flex flex-row align-items-center" style="background-color: #008980;">
-            <span style="margin-right: 8px;">Add category</span>
-            <i class="bi bi-plus-lg"></i>
-        </a>
-    </div>
-
-</body>
-
-</html>
+<br />
+<div class="d-flex flex-row align-items-center">
+    <a asp-controller="categories" asp-action="add" type="button" class="btn btn-info text-white"
+        style="background-color: #008980;">
+        <span style="margin-right: 8px; fs-6">Add category</span>
+        <i class="bi bi-plus-lg fs-6"></i>
+    </a>
+</div>

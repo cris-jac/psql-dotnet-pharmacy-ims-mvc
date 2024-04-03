@@ -1,42 +1,59 @@
-@using PharmaMVC.Models;
-@model Category
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-@{
-    Layout = "_Layout";
-}
+@model AddCategoryViewModel;
 
 @section title {
     <h3>Add category</h3>
     <hr class="my-2">
 }
 
-<div class="container d-flex flex-column align-items-center">
+<div class="d-flex flex-column col-10 mx-auto">
     <form method="post" asp-controller="categories" asp-action="add">
-        <div class="row mb-2">
-            <div class="col-4">
-                <label asp-for="CategoryName" class="col-form-label">Categoria</label>
+
+        <div class="text-danger m-2 px-2" asp-validation-summary="All"></div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Category.Name" class="col-form-label text-end">Categoria</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Category.Name" class="form-control rounded-pill">
+                </div>
             </div>
-            <div class="col-6">
-                <input type="text" asp-for="CategoryName" class="form-control">
+            <div>
+                <span class="text-danger" asp-validation-for="Category.Name"></span>
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-4">
-                <label asp-for="SubcategoryName" class="col-form-label">Subcategoria</label>
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2  col-md-3 col-sm-4">
+                    <label asp-for="Category.Description" class="col-form-label">Subcategoria</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Category.Description" class="form-control rounded-pill">
+                </div>
             </div>
-            <div class="col-6">
-                <input type="text" asp-for="SubcategoryName" class="form-control">
+            <div>
+                <span class="text-danger" asp-validation-for="Category.Description"></span>
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-4">
-                <input type="submit" class="btn btn-primary" value="Add" />
+        <div class="my-4">
+            <div class="row mb-1 form-check col-2 d-flex justify-content-end px-4 gap-2">
+                <input class="form-check-input" type="checkbox" asp-for="Category.IsActive" id="isActiveCheckbox">
+                <label class="form-check-label" for="isActiveCheckbox">Actualmente activo</label>
             </div>
-            <div class="col-6">
+        </div>
 
+        <div class="row mt-5 justify-content-between">
+            <div class="col-4 d-flex justify-content-center">
+                <input type="submit" class="btn btn-primary rounded-pill" value="Add" />
+            </div>
+
+            <div class="col-4 d-flex justify-content-center">
+                <a asp-controller="categories" asp-action="index" type="button" class="btn btn-danger rounded-pill">
+                    Cancelar
+                </a>
             </div>
         </div>
     </form>

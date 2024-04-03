@@ -1,0 +1,31 @@
+@model Category
+
+@section title {
+    <h3>Categoria: @Model.Name</h3>
+}
+
+<div>
+    <div>
+        <h5>ID de Categoria</h5>
+        <h6>@Model.Id</h6>
+    </div>
+
+    <div>
+        <h5>Nombre</h5>
+        <h6>@Model.Name</h6>
+    </div>
+
+    <div>
+        <h5>Descripcion</h5>
+        <h6>@Model.Description</h6>
+    </div>
+
+    <div>
+        <h5>Estado</h5>
+        <h6>@((Model.IsActive) ? "Activo" : "No activo")</h6>
+    </div>
+</div>
+
+<a class="btn btn-info" asp-controller="categories" asp-action="edit" asp-route-id="@Model.Id">
+    Editar
+</a>

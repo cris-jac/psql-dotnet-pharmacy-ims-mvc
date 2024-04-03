@@ -1,0 +1,65 @@
+@model Category
+
+@section title {
+    <h3>Edicion de categoria</h3>
+    <hr>
+}
+
+<div class="d-flex flex-column justify-items-center">
+    <form method="post" asp-controller="categories" asp-action="add">
+
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <input type="hidden" asp-for="Id">
+
+        <div class="my-3">
+            <div class="row mb-1">
+                <div class="col-lg-2 col-sm-4">
+                    <label asp-for="Name" class="col-form-label">Categoria</label>
+                </div>
+                <div class="col-lg-6 col-sm-8">
+                    <input type="text" asp-for="Name" class="form-control">
+                </div>
+            </div>
+            <div>
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <div class="row mb-1">
+                <div class="col-lg-2 col-sm-4">
+                    <label asp-for="Description" class="col-form-label">Subcategoria</label>
+                </div>
+                <div class="col-lg-6 col-sm-8">
+                    <input type="text" asp-for="Description" class="form-control">
+                </div>
+            </div>
+            <div>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <div class="row mb-1 form-check align-items-center">
+                <input class="form-check-input" type="checkbox" asp-for="IsActive" id="isActiveCheckbox">
+                <label class="form-check-label" for="isActiveCheckbox">Actualmente activo</label>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-4">
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+
+            <div class="col-4">
+            </div>
+
+            <div class="col-4 justify-content-end">
+                <a asp-controller="categories" asp-action="index" type="button" class="btn btn-danger">
+                    Cancelar
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

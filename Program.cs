@@ -1,7 +1,11 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using PharmaMVC.Data;
 using PharmaMVC.Interfaces;
+using PharmaMVC.Models;
 using PharmaMVC.Repositories;
+using PharmaMVC.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 
 var app = builder.Build();
 
@@ -24,6 +29,14 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+
+// app.MapControllerRoute(
+//     name: "categories",
+//     pattern: "/categories/{id}",
+//     defaults: new { controller = "Categories", action = "Details" });
+
+app.MapControllers();
+
 // app.MapGet("/", () => "Hello World!");
 
 app.Run();

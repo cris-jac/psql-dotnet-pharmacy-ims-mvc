@@ -16,7 +16,7 @@
             <div>
                 <a href="/" class="text-white text-decoration-none d-flex align-items-center m-2" role="button">
                     <img src="~/assets/PharmaLogo.png" alt="logo" height="40px" width="40px" />
-                    <div class="span">
+                    <div class="span" style="display: none;">
                         <span class="fs-5 fw-bolder" style="margin-left: 8px;">Pharmalardo</span>
                     </div>
                 </a>
@@ -25,57 +25,52 @@
 
                 <ul class="nav nav-pills flex-column m-1">
                     <li class="nav-item m-1">
-                        <a href="/" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-speedometer2"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Dashboard</span>
-                                </div>
-                            </button>
+                        <a href="/" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-speedometer2"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Dashboard</span>
+                            </div>
                         </a>
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-people-fill"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">People</span>
-                                </div>
-                            </button>
+                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-people-fill"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">People</span>
+                            </div>
                         </a>
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-inboxes-fill fs-5"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Categories</span>
-                                </div>
-                            </button>
+                        <a href="/categories" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-inboxes-fill fs-5"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Categories</span>
+                            </div>
                         </a>
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-tags fs-5"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Brands</span>
-                                </div>
-                            </button>
+                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-tags fs-5"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Brands</span>
+                            </div>
                         </a>
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="/categories/add" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-capsule-pill fs-5"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Products</span>
-                                </div>
-                            </button>
+                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-capsule-pill fs-5"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Products</span>
+                            </div>
                         </a>
 
                         @* <ul class="collapse flex-column inactive" id="productsmenu" data-bs-parent="#productsmenu">
@@ -103,37 +98,34 @@
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-receipt fs-5"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Orders</span>
-                                </div>
-                            </button>
+                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-receipt fs-5"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Orders</span>
+                            </div>
                         </a>
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="" style="text-decoration: none;">
-                            <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                                <i class="bi bi-person-fill-gear fs-5"></i>
-                                <div class="span" style="margin-left: 12px;">
-                                    <span class="fs-5">Account Settings</span>
-                                </div>
-                            </button>
+                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                            style="text-decoration: none;">
+                            <i class="bi bi-person-fill-gear fs-5"></i>
+                            <div class="span" style="margin-left: 12px; display: none;">
+                                <span class="fs-5">Account Settings</span>
+                            </div>
                         </a>
                     </li>
                 </ul>
             </div>
 
             <div class="m-2">
-                <a href="#" class="" style="text-decoration: none;">
-                    <button class="btn btn-outline-light d-flex align-items-center border-0 w-100">
-                        <i class="bi bi-box-arrow-left fs-5"></i>
-                        <div class="span" style="margin-left: 12px;">
-                            <span class="fs-5">Log out</span>
-                        </div>
-                    </button>
+                <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                    style="text-decoration: none;">
+                    <i class="bi bi-box-arrow-left fs-5"></i>
+                    <div class="span" style="margin-left: 12px; display: none;">
+                        <span class="fs-5">Log out</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -157,10 +149,10 @@
             </div>
 
             <div class="container mx-auto">
-                <div class="pb-2">
+                <div class="m-2 d-flex flex-column">
                     @RenderSection("title")
                 </div>
-                <div>
+                <div class="m-2 d-flex flex-column justify-content-center">
                     @RenderBody()
                 </div>
             </div>
