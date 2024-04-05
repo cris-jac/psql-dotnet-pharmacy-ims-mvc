@@ -1,31 +1,34 @@
 @model Category
 
 @section title {
-    <h3>Categoria: @Model.Name</h3>
+    <h3 class="my-4">Categoria: @Model.Name</h3>
+    <hr class="my-2">
 }
 
-<div>
-    <div>
-        <h5>ID de Categoria</h5>
+<div class="col-lg-6 col-md-9 col-sm-12 mx-auto">
+    <div class="my-4">
+        <h5 class="fw-bolder">ID de Categoria</h5>
         <h6>@Model.Id</h6>
     </div>
 
-    <div>
-        <h5>Nombre</h5>
+    <div class="my-4">
+        <h5 class="fw-bolder">Nombre</h5>
         <h6>@Model.Name</h6>
     </div>
 
-    <div>
-        <h5>Descripcion</h5>
+    <div class="my-4">
+        <h5 class="fw-bolder">Descripcion</h5>
         <h6>@Model.Description</h6>
     </div>
 
-    <div>
-        <h5>Estado</h5>
+    <div class="my-4">
+        <h5 class="fw-bolder">Estado</h5>
         <h6>@((Model.IsActive) ? "Activo" : "No activo")</h6>
     </div>
 </div>
 
-<a class="btn btn-info" asp-controller="categories" asp-action="edit" asp-route-id="@Model.Id">
-    Editar
-</a>
+<div class="d-flex mx-auto mt-5 col-lg-3 col-md-4 col-sm-8 justify-items-center">
+    <a class="btn btn-info rounded-pill" asp-controller="categories" asp-action="edit" asp-route-id="@Model.Id">
+        Editar
+    </a>
+</div>

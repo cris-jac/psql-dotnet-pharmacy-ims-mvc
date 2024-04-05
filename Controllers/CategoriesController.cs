@@ -37,22 +37,28 @@ public class CategoriesController : Controller
         return View(category);
     }
 
-    [HttpGet]
+    [HttpGet, Route("/categories/add")]
     public IActionResult Add()
     {
-        var addCategoryViewModel = new AddCategoryViewModel() { };
-        return View(addCategoryViewModel);
+        // var addCategoryViewModel = new AddCategoryViewModel
+        // {
+        //     Category = new Category()
+        // };
+        // return View(addCategoryViewModel);
+        return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromForm] Category category)
+    public async Task<ActionResult> Add([FromForm] AddCategoryViewModel categoryViewModel)
     {
+        var category = categoryViewModel.Category;
+
         if (ModelState.IsValid)
         {
             await _categoryRepository.AddCategory(category);
             return RedirectToAction(nameof(Index));
         }
-        return View(category);
+        return View(categoryViewModel);
         // CategoryValidator validator = new CategoryValidator();
         // ValidationResult result = validator.Validate(category);
 
@@ -72,9 +78,22 @@ public class CategoriesController : Controller
         // return View(category);
     }
 
-    public async Task<ActionResult> Edit(int categoryId)
+    [HttpGet, Route("/categories/edit/{id}")]
+    public async Task<ActionResult> Edit(int id)
     {
-        var category = await _categoryRepository.GetCategoryById(categoryId);
+        var category = await _categoryRepository.GetCategoryById(id);
+        return View(category);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Edit(Category category)
+    {
+        if (ModelState.IsValid)
+        {
+            await _categoryRepository.UpdateCategory(category.Id, category);
+            return RedirectToAction(nameof(Index));
+        }
+
         return View(category);
     }
 }

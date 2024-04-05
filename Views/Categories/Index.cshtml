@@ -1,7 +1,7 @@
 @model IEnumerable<Category>
 
 @section title {
-    <h3>Categories</h3>
+    <h3 class="my-4">Categories</h3>
     <hr class="my-2">
 }
 
@@ -35,7 +35,7 @@
 
 <br />
 <div class="d-flex flex-row align-items-center">
-    <a asp-controller="categories" asp-action="add" type="button" class="btn btn-info text-white"
+    <a asp-controller="categories" asp-route-action="add" type="button" class="btn btn-info text-white"
         style="background-color: #008980;">
         <span style="margin-right: 8px; fs-6">Add category</span>
         <i class="bi bi-plus-lg fs-6"></i>
