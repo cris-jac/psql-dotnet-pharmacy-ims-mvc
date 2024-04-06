@@ -1,8 +1,7 @@
-@model IEnumerable<Category>
+@model IEnumerable<Subcategory>
 
 @section title {
-    <h3 class="my-4">Categories</h3>
-    <hr class="my-2">
+
 }
 
 @if (Model != null && Model.Count() > 0)
@@ -10,29 +9,29 @@
     <table class="table table-hover table-striped my-3">
         <thead>
             <tr>
+                <th>Nombre</th>
                 <th>Categoria</th>
-                <th>Estado</th>
-                <th></th>
-                <th></th>
+                <th class="col-md-2"></th>
+                <th class="col-md-2"></th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var category in Model)
+            @foreach (var subcategory in Model)
             {
                 <tr>
-                    <td>@category.Name</td>
-                    <td>@(category.IsActive ? "Activo" : "No activo")</td>
+                    <td>@subcategory.Name</td>
+                    <td>@subcategory.Category?.Name</td>
                     <td>
-                        <a class="btn btn-info rounded-pill" asp-controller="categories" asp-action="details"
-                            asp-route-id="@category.Id" style="width: 100px;">
+                        <a class="btn btn-info rounded-pill" asp-controller="subcategories" asp-action="details"
+                            asp-route-id="@subcategory.Id" style="width: 100px;">
                             <i class="bi bi-eye"></i>
                             <span style="margin-left: 8px; fs-6">Ver</span>
                         </a>
                     </td>
                     <td class="justify-content-center">
-                        <a class="btn btn-danger rounded-pill" asp-controller="categories" asp-action="delete"
-                            asp-route-id="@category.Id" style="width: 100px;" onclick="return confirmDelete()">
+                        <a class="btn btn-danger rounded-pill" asp-controller="subcategories" asp-action="delete"
+                            asp-route-id="@subcategory.Id" style="width: 100px;" onclick="return confirmDelete()">
                             <i class="bi bi-trash"></i>
                             <span style="margin-left: 8px; fs-6">Borrar</span>
                         </a>
@@ -45,10 +44,10 @@
 
 <br />
 <div class="d-flex flex-row mx-auto align-items-center">
-    <a asp-controller="categories" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
+    <a asp-controller="subcategories" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
         style="background-color: #008980; width: 200px">
         <i class="bi bi-plus-lg fs-6"></i>
-        <span style="margin-left: 8px; fs-6">Nueva categoria</span>
+        <span style="margin-left: 8px; fs-6">Nueva subcategoria</span>
     </a>
 </div>
 
@@ -56,7 +55,7 @@
 {
     <script>
         const confirmDelete = () => {
-            return confirm("Esta categoria sera removida ¿Desea continuar?");
+            return confirm("Esta subcategoria sera removida ¿Desea continuar?");
         }
     </script>
 }
