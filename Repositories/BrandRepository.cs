@@ -36,9 +36,17 @@ public class BrandRepository : IBrandRepository
         return await _dbContext.Brands.ToListAsync();
     }
 
-    public async Task<bool> UpdateBrand(Brand brand)
+    public async Task<bool> UpdateBrand(int brandId, Brand brand)
     {
-        _dbContext.Brands.Update(brand);
+        var existingBrand = await _dbContext.Brands.FindAsync(brandId);
+
+        if (existingBrand != null)
+        {
+            existingBrand.Name = brand.Name;
+            existingBrand.IsNational = brand.IsNational;
+        }
+
+        _dbContext.Brands.Update(existingBrand);
         return await _dbContext.SaveChangesAsync() > 0;
     }
 }

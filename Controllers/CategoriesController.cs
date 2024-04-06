@@ -40,11 +40,6 @@ public class CategoriesController : Controller
     [HttpGet, Route("/categories/add")]
     public IActionResult Add()
     {
-        // var addCategoryViewModel = new AddCategoryViewModel
-        // {
-        //     Category = new Category()
-        // };
-        // return View(addCategoryViewModel);
         return View();
     }
 
@@ -59,23 +54,6 @@ public class CategoriesController : Controller
             return RedirectToAction(nameof(Index));
         }
         return View(categoryViewModel);
-        // CategoryValidator validator = new CategoryValidator();
-        // ValidationResult result = validator.Validate(category);
-
-        // if (result.IsValid)
-        // {
-        //     await _categoryRepository.AddCategory(category);
-        //     return RedirectToAction(nameof(Index));
-        // }
-        // else
-        // {
-        //     foreach (ValidationFailure failure in result.Errors)
-        //     {
-        //         ModelState.AddModelError(failure.PropertyName, failure.ErrorMessage);
-        //         Console.WriteLine($"Validation error: Prop - {failure.PropertyName}");
-        //     }
-        // }
-        // return View(category);
     }
 
     [HttpGet, Route("/categories/edit/{id}")]
@@ -95,5 +73,12 @@ public class CategoriesController : Controller
         }
 
         return View(category);
+    }
+
+    public async Task<ActionResult> Delete(int id)
+    {
+        var category = await _categoryRepository.GetCategoryById(id);
+        await _categoryRepository.DeleteCategory(category);
+        return RedirectToAction(nameof(Index));
     }
 }

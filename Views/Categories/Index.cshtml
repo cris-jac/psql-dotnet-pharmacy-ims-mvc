@@ -7,11 +7,12 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-    <table class="table table-striped">
+    <table class="table table-hover table-striped my-3">
         <thead>
             <tr>
                 <th>Categoria</th>
                 <th>Estado</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -21,10 +22,19 @@
             {
                 <tr>
                     <td>@category.Name</td>
-                    <td>@((category.IsActive) ? "Activo" : "No activo")</td>
+                    <td>@(category.IsActive ? "Activo" : "No activo")</td>
                     <td>
-                        <a class="btn btn-info" asp-controller="categories" asp-action="details" asp-route-id="@category.Id">
-                            Ver categoria
+                        <a class="btn btn-info rounded-pill" asp-controller="categories" asp-action="details"
+                            asp-route-id="@category.Id" style="width: 100px;">
+                            <i class="bi bi-eye"></i>
+                            <span style="margin-left: 8px; fs-6">Ver</span>
+                        </a>
+                    </td>
+                    <td class="justify-content-center">
+                        <a class="btn btn-danger rounded-pill" asp-controller="categories" asp-action="delete"
+                            asp-route-id="@category.Id" style="width: 100px;">
+                            <i class="bi bi-trash"></i>
+                            <span style="margin-left: 8px; fs-6">Borrar</span>
                         </a>
                     </td>
                 </tr>
@@ -34,10 +44,10 @@
 }
 
 <br />
-<div class="d-flex flex-row align-items-center">
-    <a asp-controller="categories" asp-route-action="add" type="button" class="btn btn-info text-white"
-        style="background-color: #008980;">
-        <span style="margin-right: 8px; fs-6">Add category</span>
+<div class="d-flex flex-row mx-auto align-items-center">
+    <a asp-controller="categories" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
+        style="background-color: #008980; width: 200px">
         <i class="bi bi-plus-lg fs-6"></i>
+        <span style="margin-left: 8px; fs-6">Nueva categoria</span>
     </a>
 </div>
