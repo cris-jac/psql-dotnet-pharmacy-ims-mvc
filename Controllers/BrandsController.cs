@@ -33,8 +33,11 @@ public class BrandsController : Controller
         return View(brand);
     }
 
+    [HttpGet, Route("/brands/add")]
     public IActionResult Add()
     {
+        ViewBag.Action = "add";
+
         return View();
     }
 
@@ -53,6 +56,8 @@ public class BrandsController : Controller
     [HttpGet, Route("/brands/edit/{id}")]
     public async Task<ActionResult> Edit([FromRoute] int id)
     {
+        ViewBag.Action = "edit";
+
         var brand = await _brandRepository.GetBrandById(id);
         return View(brand);
     }

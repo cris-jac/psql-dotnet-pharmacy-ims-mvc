@@ -1,0 +1,53 @@
+@model IEnumerable<Brand>
+
+@section title {
+    <h3 class="my-4">Marcas</h3>
+    <hr class="my-2">
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Procedencia</th>
+                <th class="col-md-2"></th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var brand in Model)
+            {
+                <tr>
+                    <td>@brand.Name</td>
+                    <td>@(brand.IsNational ? "Nacional" : "Importado")</td>
+                    <td>
+                        <a class="btn btn-info rounded-pill" asp-controller="brands" asp-action="details"
+                            asp-route-id="@brand.Id" style="width: 100px;">
+                            <i class="bi bi-eye"></i>
+                            <span style="margin-left: 8px; fs-6">Ver</span>
+                        </a>
+                    </td>
+                    <td class="justify-content-center">
+                        <a class="btn btn-danger rounded-pill" asp-controller="brands" asp-action="delete"
+                            asp-route-id="@brand.Id" style="width: 100px;">
+                            <i class="bi bi-trash"></i>
+                            <span style="margin-left: 8px; fs-6">Borrar</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br />
+<div class="d-flex flex-row mx-auto align-items-center">
+    <a asp-controller="brands" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
+        style="background-color: #008980; width: 200px">
+        <i class="bi bi-plus-lg fs-6"></i>
+        <span style="margin-left: 8px; fs-6">Nueva marca</span>
+    </a>
+</div>
