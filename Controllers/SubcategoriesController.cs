@@ -53,7 +53,7 @@ public class SubcategoriesController : Controller
     [HttpPost]
     public async Task<ActionResult> Edit(SubcategoryViewModel subcategoryViewModel)
     {
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             var subcategory = subcategoryViewModel.Subcategory;
             await _subcategoryRepository.UpdateSubcategory(subcategory.Id, subcategory);

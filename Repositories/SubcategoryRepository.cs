@@ -43,7 +43,7 @@ public class SubcategoryRepository : ISubcategoryRepository
         {
             existingSubcategory.Name = subcategory.Name;
             existingSubcategory.CategoryId = subcategory.CategoryId;
-            existingSubcategory.Category = subcategory.Category;
+            // existingSubcategory.Category = subcategory.Category;
         }
 
         _dbContext.Subcategories.Update(existingSubcategory);
