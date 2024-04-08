@@ -40,25 +40,29 @@ public class CategoriesController : Controller
     [HttpGet, Route("/categories/add")]
     public IActionResult Add()
     {
+        ViewBag.Action = "add";
+
         return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromForm] AddCategoryViewModel categoryViewModel)
+    public async Task<ActionResult> Add([FromForm] Category category)
     {
-        var category = categoryViewModel.Category;
+        // var category = categoryViewModel.Category;
 
         if (ModelState.IsValid)
         {
             await _categoryRepository.AddCategory(category);
             return RedirectToAction(nameof(Index));
         }
-        return View(categoryViewModel);
+        return View(category);
     }
 
     [HttpGet, Route("/categories/edit/{id}")]
     public async Task<ActionResult> Edit(int id)
     {
+        ViewBag.Action = "edit";
+
         var category = await _categoryRepository.GetCategoryById(id);
         return View(category);
     }
