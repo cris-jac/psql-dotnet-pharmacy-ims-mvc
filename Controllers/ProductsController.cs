@@ -44,6 +44,8 @@ public class ProductsController : Controller
     [HttpGet, Route("/products/edit/{id}")]
     public async Task<ActionResult> Edit(int id)
     {
+        ViewBag.Action = "edit";
+
         var productViewModel = new ProductViewModel
         {
             Product = await _productRepository.GetProductById(id) ?? new Product(),
@@ -72,6 +74,7 @@ public class ProductsController : Controller
     [HttpGet, Route("/products/add")]
     public async Task<ActionResult> Add()
     {
+        ViewBag.Action = "add";
 
         var productViewModel = new ProductViewModel
         {

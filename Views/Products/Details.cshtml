@@ -1,0 +1,77 @@
+@model Product
+
+@section title {
+    <h3 class="my-4">Product: @Model.Name</h3>
+    <hr class="my-2">
+}
+
+<div class="col-lg-6 col-md-9 col-sm-12 mx-auto">
+    <div class="my-4">
+        <h5 class="fw-bolder">ID de Producto</h5>
+        <h6>@Model.Id</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Codigo SKU</h5>
+        <h6>@Model.SKU</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Producto</h5>
+        <h6>@Model.Name</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Precio</h5>
+        <h6>@Model.Price</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Cantidad en Stock</h5>
+        <h6>@((Model.Stock > 0) ? Model.Stock : "Sin stock")</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Disponible</h5>
+        <h6>@((Model.IsAvailable) ? "Disponible" : "No disponible")</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Descripcion del producto</h5>
+        <h6>@Model.Description</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Subcategoria</h5>
+        <h6>@Model.Subcategory?.Name</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Categoria</h5>
+        <h6>@Model.Subcategory?.Category?.Name</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Prescripcion medica</h5>
+        <h6>@(Model.RequiresPrescription ? "Require prescripcion" : "Libre")</h6>
+    </div>
+
+</div>
+
+<div class="row mt-5 justify-content-between gap-2">
+    <div class="col d-flex justify-content-center">
+        <a class="btn btn-info rounded-pill" asp-controller="products" asp-action="edit" asp-route-id="@Model.Id"
+            style="100px">
+            <i class="bi bi-pencil"></i>
+            <span class="fs-6" style="margin-left: 8px;">Editar</span>
+        </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+        <a asp-controller="products" asp-action="index" type="button" class="btn btn-danger rounded-pill"
+            style="width: 100px;">
+            <i class="bi bi-arrow-left-circle"></i>
+            <span class="fs-6" style="margin-left: 8px;">Volver</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+@model ProductViewModel
+
+@{
+    string action = ViewBag.Action ?? string.Empty;
+}
+
+<div class="d-flex flex-column col-10 mx-auto">
+    <form method="post" asp-controller="products" asp-action="@action">
+
+        @if (action?.ToLower() == "edit")
+        {
+            <input type="hidden" asp-for="Product.Id" />
+        }
+
+        <div class="text-danger m-2 px-2" asp-validation-summary="All"></div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.Name" class="col-form-label text-end">Nombre</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Product.Name" class="form-control">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.Name"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.SKU" class="col-form-label text-end">SKU</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Product.SKU" class="form-control">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.SKU"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.Price" class="col-form-label text-end">Precio</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Product.Price" class="form-control">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.Price"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.Stock" class="col-form-label text-end">Stock</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Product.Stock" class="form-control">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.Stock"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.Name" class="col-form-label text-end">Nombre</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <textarea cols="4" asp-for="Product.Description" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.Description"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.SubcategoryId" class="col-form-label text-end">Subcategoria</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <select asp-for="Product.SubcategoryId" class="form-control">
+                        <option> - Seleccionar categoria - </option>
+                        @if (Model.Subcategories != null)
+                        {
+                            @foreach (var subcat in Model.Subcategories)
+                            {
+                                <option value="@subcat.Id">@subcat.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.SubcategoryId"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Product.BrandId" class="col-form-label text-end">Marca</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <select asp-for="Product.BrandId" class="form-control">
+                        <option> - Seleccionar categoria - </option>
+                        @if (Model.Brands != null)
+                        {
+                            @foreach (var brand in Model.Brands)
+                            {
+                                <option value="@brand.Id">@brand.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Product.BrandId"></span>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="mb-1 form-check col-12 d-flex flex-row justify-content-end px-4 gap-2">
+                <input class="form-check-input" type="checkbox" asp-for="Product.IsAvailable" id="isAvailableCheckbox">
+                <label class="form-check-label" for="isAvailableCheckbox">Disponible</label>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="mb-1 form-check col-12 d-flex flex-row justify-content-end px-4 gap-2">
+                <input class="form-check-input" type="checkbox" asp-for="Product.RequiresPrescription"
+                    id="prescriptionCheckbox">
+                <label class="form-check-label" for="prescriptionCheckbox">Requiere prescripcion medica</label>
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-between gap-2">
+            <div class="col d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary rounded-pill" style="width: 120px;">
+                    @if (action?.ToLower() == "edit")
+                    {
+                        <i class="bi bi-check-circle"></i>
+                        <span style="margin-left: 8px; fs-6">Guardar</span>
+                    }
+                    else
+                    {
+                        <i class="bi bi-plus-circle"></i>
+                        <span style="margin-left: 8px; fs-6">Crear</span>
+                    }
+                </button>
+            </div>
+
+            <div class="col d-flex justify-content-center">
+                <a asp-controller="products" asp-action="index" type="button" class="btn btn-danger rounded-pill"
+                    style="width: 120px;">
+                    <i class="bi bi-x-circle"></i>
+                    <span class="fs-6" style="margin-left: 8px;">Cancelar</span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

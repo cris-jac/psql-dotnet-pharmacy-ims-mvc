@@ -27,17 +27,17 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product?> GetProductById(int productId)
     {
-        return await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
+        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).FirstOrDefaultAsync(p => p.Id == productId);
     }
 
     public async Task<IEnumerable<Product>> GetProducts()
     {
-        return await _dbContext.Products.ToListAsync();
+        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).ToListAsync();
     }
 
     public async Task UpdateProduct(int productId, Product product)
     {
-        var existingProduct = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
+        var existingProduct = await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).FirstOrDefaultAsync(p => p.Id == productId);
 
         if (existingProduct != null)
         {
