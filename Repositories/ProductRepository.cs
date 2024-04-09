@@ -55,4 +55,29 @@ public class ProductRepository : IProductRepository
         _dbContext.Products.Update(existingProduct);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<Product>> SearchProducts(string searchTerm)
+    {
+        // var filteredProducts = _dbContext.Products.AsQueryable();
+
+        // if (searchTerm != null)
+        // {
+        searchTerm = searchTerm.Trim().ToLower();
+
+        var filteredProducts = await _dbContext.Products
+            .Where(x =>
+                x.Name.ToLower().Contains(searchTerm) ||
+                x.SKU.ToLower().Contains(searchTerm))
+            .ToListAsync();
+        // }
+
+        return filteredProducts;
+
+
+        // var result = await _dbContext.Products
+        //     .Where(x => x.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+        //         x.SKU.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+        //     .ToListAsync();
+        // return result;
+    }
 }

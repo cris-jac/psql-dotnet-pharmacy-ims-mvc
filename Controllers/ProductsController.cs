@@ -100,4 +100,11 @@ public class ProductsController : Controller
         productViewModel.Brands = await _brandRepository.GetBrands();
         return View(productViewModel);
     }
+
+    [HttpGet]
+    public async Task<ActionResult> FilteredProducts(string searchString)
+    {
+        var result = await _productRepository.SearchProducts(searchString);
+        return View(result);
+    }
 }

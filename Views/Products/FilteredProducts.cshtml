@@ -1,8 +1,7 @@
 @model IEnumerable<Product>
 
 @section title {
-    <h3 class="my-4">Productos</h3>
-    <hr class="my-2">
+    <h3>Resultados de busqueda</h3>
 }
 
 @if (Model != null && Model.Count() > 0)
@@ -52,30 +51,4 @@
             }
         </tbody>
     </table>
-}
-
-<br />
-<div class="d-flex flex-row mx-auto align-items-center">
-    <a asp-controller="products" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
-        style="background-color: #008980; width: 200px">
-        <i class="bi bi-plus-lg fs-6"></i>
-        <span style="margin-left: 8px; fs-6">Nuevo producto</span>
-    </a>
-</div>
-
-@* Goofing with search *@
-<div class="row">
-    <form method="get" asp-controller="products" asp-action="FilteredProducts">
-        <input type="text" name="searchString">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-    </form>
-</div>
-
-@section Scripts
-{
-    <script>
-        const confirmDelete = () => {
-            return confirm("Este producto sera removido ¿Desea continuar?");
-        }
-    </script>
 }

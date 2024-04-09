@@ -9,4 +9,5 @@ public interface IProductRepository
     Task AddProduct(Product product);
     Task UpdateProduct(int productId, Product product);
     Task DeleteProduct(Product product);
+    Task<IEnumerable<Product>> SearchProducts(string searchTerm);
 }
