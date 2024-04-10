@@ -1,0 +1,99 @@
+@model SalesViewModel
+
+@section title {
+    <h3 class="my-4">Sell a product</h3>
+    <hr>
+}
+
+<div class="container gap-4" style="display: flex; flex-direction: row;">
+    <div class="col-5 vh-100 px-2 pt-5" style="background-color: #DAFCF9;">
+        @* Search products *@
+        <div class="d-flex flex-row justify-content-center gap-2 mx-auto my-4">
+            @* <form method="get" asp-controller="products" asp-action="ProductsSearchPartial"> *@
+            <input id="search-input" type="text" class="col-9">
+            <button id="search-btn" class="btn btn-info btn-sm rounded-pill" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+            @* </form> *@
+        </div>
+
+        @* List of products *@
+        <div id="products-partial" class="mx-auto my-4 border">
+            @* <partial name="_ProductsSearch" model="@Model.Products" /> *@
+        </div>
+
+        @* Product add *@
+        <div id="product-detail-partial" class="mx-auto my-4 border"></div>
+
+        @* Product *@
+        <form method="post" asp-controller="sales" asp-action="sell" id="form-sale">
+            <input asp-for="ProductId" type="hidden">
+            <div>
+                <div class="m-2 d-flex gap-2">
+                    <label asp-for="QuantityToSell" class="col-6 col-sm-4 col-md-3">Cantidad</label>
+                    <input asp-for="QuantityToSell" type="text" class="col-6 col-sm-8 col-md-9">
+                </div>
+            </div>
+            <br />
+            <input type="button" class="btn btn-primary my-2 mx-auto" value="Agregar">
+        </form>
+
+    </div>
+
+    <div class="col-7 mx-2 d-flex flex-column">
+        @* Table *@
+        <div class="w-100 my-2"></div>
+
+        @* Summary *@
+        <div class="d-flex justify-content-end border"></div>
+
+        @* Buttons *@
+        <div class="d-flex justify-content-around border"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            // Initialize
+            $("#form-sale").hide();
+            $("#QuantityToSell").val("");
+
+            // Handle search
+            $("#search-btn").on("click", function () {
+                $.ajax({
+                    url: "products/ProductsSearchPartial",
+                    type: "GET",
+                    data: { q: $("#search-input").val() },
+                    success: function (data) {
+                        $("#products-partial").html(data)
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                })
+
+                // Reset data
+                $("#product-detail-partial").html("")
+                $("#form-sale").hide();
+            })
+
+            // Handle product selection
+            $("#products-partial").on("click", ".product-row", function () {
+                // Get product Id
+                var productId = $(this).attr("product-id");
+
+                // Load details
+                $("#product-detail-partial").load("/sales/SellProductPartial", { productId: productId });
+
+                if (productId > 0) {
+                    $("#ProductId").val(productId);
+                    $("#form-sale").show();
+                } else {
+                    $("#ProductId").val("");
+                    $("#form-sale").hide();
+                }
+            })
+        })
+    </script>
+}

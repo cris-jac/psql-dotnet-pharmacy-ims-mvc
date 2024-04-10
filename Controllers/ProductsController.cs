@@ -107,4 +107,15 @@ public class ProductsController : Controller
         var result = await _productRepository.SearchProducts(searchString);
         return View(result);
     }
+
+    [HttpGet]
+    public async Task<ActionResult> ProductsSearchPartial(string q)
+    {
+        if (string.IsNullOrEmpty(q)) return Content("");
+
+        var result = await _productRepository.SearchProducts(q);
+        if (result == null || !result.Any()) return Content("");
+
+        return PartialView("_ProductsSearch", result);
+    }
 }
