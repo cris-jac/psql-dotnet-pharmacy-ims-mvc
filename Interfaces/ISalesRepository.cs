@@ -10,4 +10,5 @@ public interface ISalesRepository
     Task AddSalesItem(SalesItem salesItem);
     Task RemoveSalesItem(SalesItem salesItem);
     Task SaveChangesAsync();
+    Task<SalesBasket?> GetBasketById(int basketId);
 }

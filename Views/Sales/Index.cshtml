@@ -49,10 +49,14 @@
         </div>
 
         @* Summary *@
-        <div class="d-flex justify-content-end border"></div>
+        @* <div class="d-flex justify-content-end border"></div> *@
 
         @* Buttons *@
-        <div class="d-flex justify-content-around border"></div>
+        <div class="d-flex justify-content-around border">
+            <button class="btn btn-primary rounded-pill"
+                style="background-color: #008980; width: 200px">Concluir</button>
+            <button class="btn btn-danger rounded-pill" style="width: 200px;">Cancelar</button>
+        </div>
     </div>
 </div>
 
@@ -109,8 +113,7 @@
                     data: $(this).serialize(),
                     success: function (response) {
                         console.log("Great success")
-        @* $('#sales-items').html(response); *@
-                            window.location.href = '/sales';
+                        window.location.href = '/sales';
                     },
                     error: function (error) {
                         console.log("Great Mistake");
@@ -121,23 +124,18 @@
             // Handle add remove buttons
             $(".btn-form").submit(function (e) {
                 e.preventDefault();
-
-        @* var userId = $("#sales-items-table").attr('user-id');
-                var productId = $(this).closest('tr').attr('product-id');
-                var updateQuantityBy = $(this).attr("quantity"); *@
-
-                    $.ajax({
-                        url: "sales/UpdateSaleItemQuantity",
-                        type: "POST",
-                        data: $(this).serialize(),
-                        success: function (response) {
-                            console.log("Great success")
-                            window.location.href = '/sales';
-                        },
-                        error: function (error) {
-                            console.log("Great Mistake");
-                        }
-                    })
+                $.ajax({
+                    url: "sales/UpdateSaleItemQuantity",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log("Great success")
+                        window.location.href = '/sales';
+                    },
+                    error: function (error) {
+                        console.log("Great Mistake");
+                    }
+                })
             })
         })
     </script>

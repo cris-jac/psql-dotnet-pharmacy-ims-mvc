@@ -48,8 +48,10 @@ public class SalesRepository : ISalesRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    // public async Task<SalesItem?> GetItemFromBasket(int productId)
-    // {
-    //     return await _dbContext.SalesBaskets
-    // }
+    public async Task<SalesBasket?> GetBasketById(int basketId)
+    {
+        // return await _dbContext.SalesBaskets.Include(x => x.SalesItems).FirstOrDefaultAsync(x => x.Id == basketId);
+        var basket = await _dbContext.SalesBaskets.Include(x => x.SalesItems).ThenInclude(i => i.Product).FirstOrDefaultAsync(x => x.Id == basketId);
+        return basket;
+    }
 }

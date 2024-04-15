@@ -3,7 +3,7 @@
 @if (Model != null && Model.SalesItems.Count() > 0)
 {
 
-    <table id="sales-items-table" class="table table-border table-hover" user-id="@Model.UserId">
+    <table id="sales-items-table" class="table table-striped table-hover text-center" user-id="@Model.UserId">
         <thead>
             <tr>
                 <th>Name</th>
@@ -19,34 +19,36 @@
         <tbody>
             @foreach (var item in Model.SalesItems)
             {
-                <tr class="sale-item-row" product-id="@item.ProductId">
+                <tr class="sale-item-row" product-id="@item.ProductId" style="vertical-align: middle;">
                     <td>@item.Product.Name</td>
                     <td class="d-none d-md-table-cell">@item.Product.RequiresPrescription</td>
-                    <td>@item.Product.Price</td>
+                    <td>@item.Product.Price.ToString("N2")</td>
                     <td>21</td>
                     <td>
-                        <form method="post" class="btn-form">
-                            <input type="hidden" name="UserId" value="Tony">
-                            <input type="hidden" name="ProductId" value="@item.ProductId">
-                            <input type="hidden" name="UpdateQuantityBy" value="-1">
-                            <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
-                                <i class="bi bi-dash-circle"></i>
-                            </button>
-                        </form>
+                        <div class="d-flex justify-content-center gap-2">
 
-                        <span>@item.Quantity</span>
+                            <form method="post" class="btn-form m-0">
+                                <input type="hidden" name="UserId" value="Tony">
+                                <input type="hidden" name="ProductId" value="@item.ProductId">
+                                <input type="hidden" name="UpdateQuantityBy" value="-1">
+                                <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
+                                    <i class="bi bi-dash-circle"></i>
+                                </button>
+                            </form>
 
-                        <form method="post" class="btn-form">
-                            <input type="hidden" name="UserId" value="Tony">
-                            <input type="hidden" name="ProductId" value="@item.ProductId">
-                            <input type="hidden" name="UpdateQuantityBy" value="1">
-                            <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
-                                <i class="bi bi-plus-circle"></i>
-                            </button>
-                        </form>
+                            <span class="text-center">@item.Quantity</span>
+
+                            <form method="post" class="btn-form m-0">
+                                <input type="hidden" name="UserId" value="Tony">
+                                <input type="hidden" name="ProductId" value="@item.ProductId">
+                                <input type="hidden" name="UpdateQuantityBy" value="1">
+                                <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                     <td>@((item.Product.Price * item.Quantity).ToString("N2"))</td>
-                    @* ("#.##0,00") *@
                     <td>
                         <form method="post" class="btn-form">
                             <input type="hidden" name="UserId" value="Tony">
@@ -67,75 +69,26 @@
                 <td colspan="4"></td>
                 <th>Total amount</th>
                 <td colspan="2">
-                    @* @Model.SalesItems.Sum(x => x.Product.Price * x.Quantity).ToString("#.##0,00") *@
-                    @(string.Format("{0:#,##0.00}", Model.SalesItems.Sum(x => x.Product.Price * x.Quantity)).Replace('.',
-                        ','); )
+                    @Model.SalesItems.Sum(x => x.Product.Price * x.Quantity).ToString("N2")
                 </td>
             </tr>
         </tfoot>
     </table>
+
+    @* Buttons *@
+    <div class="d-flex justify-content-around border my-2">
+        <form asp-controller="transactions" asp-action="CreateTransaction">
+            <input type="hidden" name="basketId" value="@Model.Id">
+            <button type="submit" class="btn btn-primary rounded-pill"
+                style="background-color: #008980; width: 200px">Concluir</button>
+        </form>
+
+        <form>
+            <button class="btn btn-danger rounded-pill" style="width: 200px;">Cancelar</button>
+        </form>
+    </div>
 }
 else
 {
     <p>There are not items on the basket... yet</p>
 }
-
-@* <script>
-$(document).ready(function () {
-$(".btn-form").on("submit", function (e) {
-e.preventDefault();
-
-var form = $(this);
-
-$.ajax({
-url: `sales/${form.attr('action')}`,
-type: form.attr('method'),
-data: form.serialize(),
-success: function (data) {
-$("#sales-items-table").html(data)
-},
-error: function (xhr, status, error) {
-console.error("Error:", error);
-}
-})
-})
-})
-</script> *@
-
-
-@* <script>
-$(document).ready(function () {
-console.log('Script loaded');
-
-// Handle table buttons
-$(".sale-item-row").on("click", "#btn-increment-item", function () {
-console.log('Button clicked');
-
-var userId = $("#sales-items-table").attr('user-id');
-var productId = $(this).closest('tr').attr('product-id');
-var updateQuantityBy = $(this).attr("quantity");
-
-var salesViewModel = {
-UserId = userId,
-ProductId = productId,
-UpdateQuantityBy = updateQuantityBy
-}
-
-$.ajax({
-url: "sales/UpdateSaleItem",
-type: "POST",
-dataType: "json",
-contentType: 'application/json',
-data: {
-JSON.stringify(salesViewModel)
-},
-success: function (data) {
-console.log("Great success");
-},
-error: function (xhr, status, error) {
-console.error("Error:", error);
-}
-})
-})
-}
-</script> *@

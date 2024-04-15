@@ -17,4 +17,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<SalesBasket> SalesBaskets { get; set; }
     public DbSet<SalesItem> SalesItems { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<TransactionItem> TransactionItems { get; set; }
 }

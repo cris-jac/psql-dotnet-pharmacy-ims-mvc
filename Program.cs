@@ -22,6 +22,7 @@ builder.Services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<ISalesRepository, SalesRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 
 var app = builder.Build();

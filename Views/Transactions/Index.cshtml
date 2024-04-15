@@ -1,0 +1,52 @@
+@model IEnumerable<Transaction>
+
+@section title {
+    <h3 class="my-4">Transacciones</h3>
+    <hr class="my-2">
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th>ID de transaccion</th>
+                <th class="d-none d-md-table-cell">Vendedor</th>
+                <th>Fecha</th>
+                <th>Monto total ($)</th>
+                <th class="d-none d-md-table-cell">Cliente</th>
+                <th class="d-none d-md-table-cell">Prescripcion</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var tran in Model)
+            {
+                <tr>
+                    <td>@tran.Id</td>
+                    <td class="d-none d-md-table-cell">@tran.UserId</td>
+                    <td>@tran.TimeStamp</td>
+                    <td>@tran.TotalAmount</td>
+                    <td class="d-none d-md-table-cell">@(tran.ClientName ?? "-")</td>
+                    <td class="d-none d-md-table-cell">@(tran.PrescriptionId.HasValue ? tran.PrescriptionId.Value.ToString() : '-')</td>
+                    <td>
+                        @* <a class="btn btn-info rounded-pill" asp-controller="products" asp-action="details"
+                            asp-route-id="@product.Id" style="width: 100px;">
+                            <i class="bi bi-eye"></i>
+                            <span style="margin-left: 8px; fs-6">Ver</span>
+                        </a>
+                    </td>
+                    <td class="justify-content-center">
+                        <a class="btn btn-danger rounded-pill" asp-controller="categories" asp-action="products"
+                            asp-route-id="@product.Id" style="width: 100px;" onclick="return confirmDelete()">
+                            <i class="bi bi-trash"></i>
+                            <span style="margin-left: 8px; fs-6">Borrar</span>
+                        </a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
