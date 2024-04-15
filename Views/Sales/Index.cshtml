@@ -26,23 +26,27 @@
         <div id="product-detail-partial" class="mx-auto my-4 border"></div>
 
         @* Product *@
-        <form method="post" asp-controller="sales" asp-action="sell" id="form-sale">
+        <form method="post" id="form-sale">
+            @* hidden user id hardcoded *@
+            <input asp-for="UserId" type="hidden" value="Tony" />
             <input asp-for="ProductId" type="hidden">
             <div>
                 <div class="m-2 d-flex gap-2">
-                    <label asp-for="QuantityToSell" class="col-6 col-sm-4 col-md-3">Cantidad</label>
-                    <input asp-for="QuantityToSell" type="text" class="col-6 col-sm-8 col-md-9">
+                    <label asp-for="UpdateQuantityBy" class="col-6 col-sm-4 col-md-3">Cantidad</label>
+                    <input asp-for="UpdateQuantityBy" type="text" class="col-6 col-sm-8 col-md-9">
                 </div>
             </div>
             <br />
-            <input type="button" class="btn btn-primary my-2 mx-auto" value="Agregar">
+            <input type="submit" class="btn btn-primary my-2 mx-auto" value="Agregar">
         </form>
 
     </div>
 
     <div class="col-7 mx-2 d-flex flex-column">
         @* Table *@
-        <div class="w-100 my-2"></div>
+        <div id="sales-items" class="w-100 my-2">
+            @await Component.InvokeAsync("Sales", "Tony")
+        </div>
 
         @* Summary *@
         <div class="d-flex justify-content-end border"></div>
@@ -93,6 +97,47 @@
                     $("#ProductId").val("");
                     $("#form-sale").hide();
                 }
+            })
+
+            // Handle add sales item
+            $("#form-sale").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "sales/UpdateSaleItemQuantity",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log("Great success")
+        @* $('#sales-items').html(response); *@
+                            window.location.href = '/sales';
+                    },
+                    error: function (error) {
+                        console.log("Great Mistake");
+                    }
+                })
+            })
+
+            // Handle add remove buttons
+            $(".btn-form").submit(function (e) {
+                e.preventDefault();
+
+        @* var userId = $("#sales-items-table").attr('user-id');
+                var productId = $(this).closest('tr').attr('product-id');
+                var updateQuantityBy = $(this).attr("quantity"); *@
+
+                    $.ajax({
+                        url: "sales/UpdateSaleItemQuantity",
+                        type: "POST",
+                        data: $(this).serialize(),
+                        success: function (response) {
+                            console.log("Great success")
+                            window.location.href = '/sales';
+                        },
+                        error: function (error) {
+                            console.log("Great Mistake");
+                        }
+                    })
             })
         })
     </script>

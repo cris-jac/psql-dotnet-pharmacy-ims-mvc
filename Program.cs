@@ -21,6 +21,9 @@ builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+builder.Services.AddScoped<ISalesRepository, SalesRepository>();
+
+
 var app = builder.Build();
 
 app.UseStaticFiles();
