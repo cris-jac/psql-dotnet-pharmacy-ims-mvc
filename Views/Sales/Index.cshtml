@@ -1,7 +1,7 @@
 @model SalesViewModel
 
 @section title {
-    <h3 class="my-4">Sell a product</h3>
+    <h3 class="my-4">Vender productos</h3>
     <hr>
 }
 
@@ -9,7 +9,6 @@
     <div class="col-5 vh-100 px-2 pt-5" style="background-color: #DAFCF9;">
         @* Search products *@
         <div class="d-flex flex-row justify-content-center gap-2 mx-auto my-4">
-            @* <form method="get" asp-controller="products" asp-action="ProductsSearchPartial"> *@
             <input id="search-input" type="text" class="col-9">
             <button id="search-btn" class="btn btn-info btn-sm rounded-pill" type="submit">
                 <i class="bi bi-search"></i>
@@ -18,12 +17,11 @@
         </div>
 
         @* List of products *@
-        <div id="products-partial" class="mx-auto my-4 border">
-            @* <partial name="_ProductsSearch" model="@Model.Products" /> *@
+        <div id="products-partial" class="mx-auto my-4">
         </div>
 
         @* Product add *@
-        <div id="product-detail-partial" class="mx-auto my-4 border"></div>
+        <div id="product-detail-partial" class="mx-auto mt-4"></div>
 
         @* Product *@
         <form method="post" id="form-sale">
@@ -37,7 +35,7 @@
                 </div>
             </div>
             <br />
-            <input type="submit" class="btn btn-primary my-2 mx-auto" value="Agregar">
+            <input type="submit" class="btn btn-primary rounded-pill mx-auto" style="width: 100px;" value="Agregar">
         </form>
 
     </div>
@@ -52,11 +50,11 @@
         @* <div class="d-flex justify-content-end border"></div> *@
 
         @* Buttons *@
-        <div class="d-flex justify-content-around border">
-            <button class="btn btn-primary rounded-pill"
-                style="background-color: #008980; width: 200px">Concluir</button>
-            <button class="btn btn-danger rounded-pill" style="width: 200px;">Cancelar</button>
-        </div>
+        @* <div class="d-flex justify-content-around border">
+        <button class="btn btn-primary rounded-pill"
+        style="background-color: #008980; width: 200px">Concluir</button>
+        <button class="btn btn-danger rounded-pill" style="width: 200px;">Cancelar</button>
+        </div> *@
     </div>
 </div>
 

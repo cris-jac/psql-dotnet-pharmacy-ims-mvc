@@ -186,4 +186,16 @@ public class SalesController : Controller
 
         }
     }
+
+    public async Task<ActionResult> CancelSale(int id)
+    {
+        var basket = await _salesRepository.GetBasketById(id);
+
+        if (basket == null) return NoContent();
+
+        await _salesRepository.RemoveSalesBasket(basket);
+        await _salesRepository.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Index));
+    }
 }

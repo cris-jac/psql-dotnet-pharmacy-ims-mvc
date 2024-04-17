@@ -27,17 +27,17 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product?> GetProductById(int productId)
     {
-        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).FirstOrDefaultAsync(p => p.Id == productId);
+        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).Include(p => p.Tax).FirstOrDefaultAsync(p => p.Id == productId);
     }
 
     public async Task<IEnumerable<Product>> GetProducts()
     {
-        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).ToListAsync();
+        return await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).Include(p => p.Tax).ToListAsync();
     }
 
     public async Task UpdateProduct(int productId, Product product)
     {
-        var existingProduct = await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).FirstOrDefaultAsync(p => p.Id == productId);
+        var existingProduct = await _dbContext.Products.Include(p => p.Brand).Include(p => p.Subcategory).ThenInclude(s => s.Category).Include(p => p.Tax).FirstOrDefaultAsync(p => p.Id == productId);
 
         if (existingProduct != null)
         {
@@ -48,6 +48,7 @@ public class ProductRepository : IProductRepository
             existingProduct.Description = product.Description;
             existingProduct.BrandId = product.BrandId;
             existingProduct.SubcategoryId = product.SubcategoryId;
+            existingProduct.TaxId = product.TaxId;
             existingProduct.IsAvailable = product.IsAvailable;
             existingProduct.RequiresPrescription = product.RequiresPrescription;
         }

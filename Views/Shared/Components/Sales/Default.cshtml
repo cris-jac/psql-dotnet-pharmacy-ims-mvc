@@ -76,19 +76,21 @@
     </table>
 
     @* Buttons *@
-    <div class="d-flex justify-content-around border my-2">
+    <div class="d-flex justify-content-around my-2">
         <form asp-controller="transactions" asp-action="CreateTransaction">
             <input type="hidden" name="basketId" value="@Model.Id">
             <button type="submit" class="btn btn-primary rounded-pill"
-                style="background-color: #008980; width: 200px">Concluir</button>
+                style="background-color: #008980; width: 140px">Concluir</button>
         </form>
 
-        <form>
-            <button class="btn btn-danger rounded-pill" style="width: 200px;">Cancelar</button>
-        </form>
+        <a class="btn btn-danger rounded-pill" asp-controller="sales" asp-action="cancelsale" asp-route-id="@Model.Id"
+            style="width: 140px;">
+            <i class="bi bi-trash"></i>
+            <span style="margin-left: 8px; fs-6">Cancelar</span>
+        </a>
     </div>
 }
 else
 {
-    <p>There are not items on the basket... yet</p>
+    <p>No tenes productos por vender, selecciona en la ventana de la izquierda</p>
 }

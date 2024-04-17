@@ -1,0 +1,71 @@
+@model Transaction
+
+@section title {
+    <h3 class="my-4">Transaccion: #@Model.Id</h3>
+    <hr class="my-2">
+}
+
+<div class="col-lg-6 col-md-9 col-sm-12 mx-auto">
+    <div class="my-4">
+        <h5 class="fw-bolder">ID de Transaccion</h5>
+        <h6>@Model.Id</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Responsable de venta</h5>
+        <h6>@Model.UserId</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Fecha y hora</h5>
+        <h6>@Model.TimeStamp</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Monto total</h5>
+        <h6>@Model.TotalAmount.ToString("N2")</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Nombre del cliente</h5>
+        <h6>@(Model.ClientName ?? "-")</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Prescripcion</h5>
+        <h6>@(Model.PrescriptionId.HasValue ? Model.PrescriptionId.Value.ToString() : "-")</h6>
+    </div>
+</div>
+
+<br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID del producto</th>
+            <th>Nombre del producto</th>
+            <th>Stock original</th>
+            <th>Stock restante</th>
+            <th>Cantidad</th>
+            <th>Precio unitario (AR$)</th>
+            <th>Impuesto (AR$)</th>
+            <th>Precio final (AR$)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.TransactionItems)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.StockBeforeSell</td>
+                <td>@item.StockRemaining</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice.ToString("N2")</td>
+                <td>@item.TaxAmount.ToString("N2")</td>
+                <td>@item.FinalPrice.ToString("N2")</td>
+            </tr>
+        }
+    </tbody>
+</table>

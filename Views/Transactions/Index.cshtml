@@ -28,22 +28,15 @@
                     <td>@tran.Id</td>
                     <td class="d-none d-md-table-cell">@tran.UserId</td>
                     <td>@tran.TimeStamp</td>
-                    <td>@tran.TotalAmount</td>
+                    <td>@tran.TotalAmount.ToString("N2")</td>
                     <td class="d-none d-md-table-cell">@(tran.ClientName ?? "-")</td>
                     <td class="d-none d-md-table-cell">@(tran.PrescriptionId.HasValue ? tran.PrescriptionId.Value.ToString() : '-')</td>
                     <td>
-                        @* <a class="btn btn-info rounded-pill" asp-controller="products" asp-action="details"
-                            asp-route-id="@product.Id" style="width: 100px;">
+                        <a class="btn btn-info rounded-pill" asp-controller="transactions" asp-action="details"
+                            asp-route-id="@tran.Id" style="width: 100px;">
                             <i class="bi bi-eye"></i>
                             <span style="margin-left: 8px; fs-6">Ver</span>
                         </a>
-                    </td>
-                    <td class="justify-content-center">
-                        <a class="btn btn-danger rounded-pill" asp-controller="categories" asp-action="products"
-                            asp-route-id="@product.Id" style="width: 100px;" onclick="return confirmDelete()">
-                            <i class="bi bi-trash"></i>
-                            <span style="margin-left: 8px; fs-6">Borrar</span>
-                        </a> *@
                     </td>
                 </tr>
             }

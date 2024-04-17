@@ -20,6 +20,11 @@ public class TransactionRepository : ITransactionRepository
         return await _dbContext.Transactions.ToListAsync();
     }
 
+    public async Task<Transaction?> GetTransactionById(int transactionId)
+    {
+        return await _dbContext.Transactions.Include(x => x.TransactionItems).FirstOrDefaultAsync(x => x.Id == transactionId);
+    }
+
     public void CreateTransaction(Transaction transaction)
     {
         _dbContext.Transactions.Add(transaction);

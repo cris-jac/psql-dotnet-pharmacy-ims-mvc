@@ -1,0 +1,46 @@
+@model Tax
+
+@section title {
+    <h3 class="my-4">Impuesto: @Model.Name</h3>
+    <hr class="my-2">
+}
+
+<div class="col-lg-6 col-md-9 col-sm-12 mx-auto">
+    <div class="my-4">
+        <h5 class="fw-bolder">ID de Impuesto</h5>
+        <h6>@Model.Id</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Nombre</h5>
+        <h6>@Model.Name</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Descripcion</h5>
+        <h6>@Model.Description</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Tasa</h5>
+        <h6>@Model.Rate.ToString("P2")</h6>
+    </div>
+</div>
+
+<div class="row mt-5 justify-content-between gap-2">
+    <div class="col d-flex justify-content-center">
+        <a class="btn btn-info rounded-pill" asp-controller="taxes" asp-action="edit" asp-route-id="@Model.Id"
+            style="100px">
+            <i class="bi bi-pencil"></i>
+            <span class="fs-6" style="margin-left: 8px;">Editar</span>
+        </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+        <a asp-controller="taxes" asp-action="index" type="button" class="btn btn-danger rounded-pill"
+            style="width: 100px;">
+            <i class="bi bi-arrow-left-circle"></i>
+            <span class="fs-6" style="margin-left: 8px;">Volver</span>
+        </a>
+    </div>
+</div>

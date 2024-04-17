@@ -11,16 +11,19 @@ public class ProductsController : Controller
     private readonly IProductRepository _productRepository;
     private readonly ISubcategoryRepository _subcategoryRepository;
     private readonly IBrandRepository _brandRepository;
+    private readonly ITaxRepository _taxRepository;
 
     public ProductsController(
         IProductRepository productRepository,
         ISubcategoryRepository subcategoryRepository,
-        IBrandRepository brandRepository
+        IBrandRepository brandRepository,
+        ITaxRepository taxRepository
     )
     {
         _productRepository = productRepository;
         _subcategoryRepository = subcategoryRepository;
         _brandRepository = brandRepository;
+        _taxRepository = taxRepository;
     }
 
     public async Task<ActionResult> Index()
@@ -51,6 +54,7 @@ public class ProductsController : Controller
             Product = await _productRepository.GetProductById(id) ?? new Product(),
             Subcategories = await _subcategoryRepository.GetSubcategories(),
             Brands = await _brandRepository.GetBrands(),
+            Taxes = await _taxRepository.GetTaxes()
         };
 
         return View(productViewModel);
@@ -68,6 +72,7 @@ public class ProductsController : Controller
 
         productViewModel.Subcategories = await _subcategoryRepository.GetSubcategories();
         productViewModel.Brands = await _brandRepository.GetBrands();
+        productViewModel.Taxes = await _taxRepository.GetTaxes();
         return View(productViewModel);
     }
 
@@ -79,7 +84,8 @@ public class ProductsController : Controller
         var productViewModel = new ProductViewModel
         {
             Subcategories = await _subcategoryRepository.GetSubcategories(),
-            Brands = await _brandRepository.GetBrands()
+            Brands = await _brandRepository.GetBrands(),
+            Taxes = await _taxRepository.GetTaxes()
         };
 
         return View(productViewModel);
@@ -98,6 +104,7 @@ public class ProductsController : Controller
 
         productViewModel.Subcategories = await _subcategoryRepository.GetSubcategories();
         productViewModel.Brands = await _brandRepository.GetBrands();
+        productViewModel.Taxes = await _taxRepository.GetTaxes();
         return View(productViewModel);
     }
 

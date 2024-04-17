@@ -1,7 +1,7 @@
-@model IEnumerable<Category>
+@model IEnumerable<Tax>
 
 @section title {
-    <h3 class="my-4">Categorias</h3>
+    <h3 class="my-4">Impuestos</h3>
     <hr class="my-2">
 }
 
@@ -10,29 +10,29 @@
     <table class="table table-hover table-striped my-3">
         <thead>
             <tr>
-                <th>Categoria</th>
-                <th>Estado</th>
+                <th>Impuesto</th>
+                <th>Tasa (%)</th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var category in Model)
+            @foreach (var tax in Model)
             {
                 <tr>
-                    <td>@category.Name</td>
-                    <td>@(category.IsActive ? "Activo" : "No activo")</td>
+                    <td>@tax.Name</td>
+                    <td>@tax.Rate</td>
                     <td>
-                        <a class="btn btn-info rounded-pill" asp-controller="categories" asp-action="details"
-                            asp-route-id="@category.Id" style="width: 100px;">
+                        <a class="btn btn-info rounded-pill" asp-controller="taxes" asp-action="details" asp-route-id="@tax.Id"
+                            style="width: 100px;">
                             <i class="bi bi-eye"></i>
                             <span style="margin-left: 8px; fs-6">Ver</span>
                         </a>
                     </td>
                     <td class="justify-content-center">
-                        <a class="btn btn-danger rounded-pill" asp-controller="categories" asp-action="delete"
-                            asp-route-id="@category.Id" style="width: 100px;" onclick="return confirmDelete()">
+                        <a class="btn btn-danger rounded-pill" asp-controller="taxes" asp-action="delete" asp-route-id="@tax.Id"
+                            style="width: 100px;" onclick="return confirmDelete()">
                             <i class="bi bi-trash"></i>
                             <span style="margin-left: 8px; fs-6">Borrar</span>
                         </a>
@@ -45,10 +45,10 @@
 
 <br />
 <div class="d-flex flex-row mx-auto align-items-center">
-    <a asp-controller="categories" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
+    <a asp-controller="taxes" asp-route-action="add" type="button" class="btn btn-info text-white rounded-pill"
         style="background-color: #008980; width: 200px">
         <i class="bi bi-plus-lg fs-6"></i>
-        <span style="margin-left: 8px; fs-6">Nueva categoria</span>
+        <span style="margin-left: 8px; fs-6">Nueva impuesto</span>
     </a>
 </div>
 
@@ -56,7 +56,7 @@
 {
     <script>
         const confirmDelete = () => {
-            return confirm("Esta categoria sera removida ¿Desea continuar?");
+            return confirm("Esta impuesto sera removido ¿Desea continuar?");
         }
     </script>
 }

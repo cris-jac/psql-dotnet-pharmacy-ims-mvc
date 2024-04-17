@@ -67,7 +67,7 @@ public class TransactionsController : Controller
         transaction.TotalAmount = transaction.TransactionItems.Sum(x => x.FinalPrice);
         await _transactionRepository.SaveChangesAsync();
 
-        // Update the items quantity
+        // Update the stock
         foreach (var item in basket.SalesItems)
         {
             var product = await _productRepository.GetProductById(item.ProductId);
@@ -82,4 +82,13 @@ public class TransactionsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [HttpGet, Route("/transactions/{id}")]
+    public async Task<ActionResult<Transaction>> Details([FromRoute] int id)
+    {
+        var transaction = await _transactionRepository.GetTransactionById(id);
+
+        if (transaction == null) return NoContent();
+
+        return View(transaction);
+    }
 }

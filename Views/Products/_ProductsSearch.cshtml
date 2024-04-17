@@ -2,7 +2,7 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-    <table class="table table-sm table-hover table-bordered ">
+    <table class="table small table-sm table-hover table-bordered ">
         <thead>
             <tr>
                 <th>Name</th>
@@ -18,8 +18,8 @@
                 <tr class="product-row" product-id="@product.Id">
                     <td>@product.Name</td>
                     <td class="d-none d-md-table-cell ">@product.SKU</td>
-                    <td>@product.Price</td>
-                    <td>@product.Stock</td>
+                    <td class="text-left">@product.Price.ToString("N2")</td>
+                    <td class="text-center">@product.Stock</td>
                 </tr>
             }
         </tbody>

@@ -13,6 +13,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Subcategory> Subcategories { get; set; }
+    public DbSet<Tax> Taxes { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<SalesBasket> SalesBaskets { get; set; }
     public DbSet<SalesItem> SalesItems { get; set; }

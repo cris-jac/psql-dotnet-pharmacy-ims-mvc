@@ -1,5 +1,6 @@
 @model Product
 
+
 @section title {
     <h3 class="my-4">Product: @Model.Name</h3>
     <hr class="my-2">
@@ -22,8 +23,19 @@
     </div>
 
     <div class="my-4">
-        <h5 class="fw-bolder">Precio</h5>
-        <h6>@Model.Price</h6>
+        <h5 class="fw-bolder">Precio unitario</h5>
+        <h6>@Model.Price.ToString("N2")</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Impuesto asociado</h5>
+        <h6>@Model.Tax?.Name</h6>
+    </div>
+
+    <div class="my-4">
+        <h5 class="fw-bolder">Precio de venta</h5>
+        <h6>@((Model.Tax != null) ? ((decimal)Model.Price * (1 + ((decimal)Model.Tax.Rate / 100))).ToString("N2") :
+                Model.Price.ToString("N2"))</h6>
     </div>
 
     <div class="my-4">
