@@ -1,3 +1,12 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +44,7 @@
                     </li>
 
                     <li class="nav-item m-1">
-                        <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                        <a href="/employees" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
                             style="text-decoration: none;">
                             <i class="bi bi-people-fill"></i>
                             <div class="span" style="margin-left: 12px; display: none;">
@@ -126,15 +135,19 @@
                 </ul>
             </div>
 
-            <div class="m-2">
-                <a href="#" class="btn btn-outline-light d-flex align-items-center border-0 w-100"
-                    style="text-decoration: none;">
-                    <i class="bi bi-box-arrow-left fs-5"></i>
-                    <div class="span" style="margin-left: 12px; display: none;">
-                        <span class="fs-5">Log out</span>
-                    </div>
-                </a>
-            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="m-2">
+                    <a asp-controller="account" asp-action="logout"
+                        class="btn btn-outline-light d-flex align-items-center border-0 w-100"
+                        style="text-decoration: none;">
+                        <i class="bi bi-box-arrow-left fs-5"></i>
+                        <div class="span" style="margin-left: 12px; display: none;">
+                            <span class="fs-5">Log out</span>
+                        </div>
+                    </a>
+                </div>
+            }
         </div>
 
 

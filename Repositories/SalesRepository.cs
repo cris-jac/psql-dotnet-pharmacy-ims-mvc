@@ -13,7 +13,7 @@ public class SalesRepository : ISalesRepository
         _dbContext = dbContext;
     }
 
-    public async Task<SalesBasket?> GetSalesBasket(string userId)
+    public async Task<SalesBasket?> GetSalesBasket(int userId)
     {
         var basket = await _dbContext.SalesBaskets.Include(x => x.SalesItems).ThenInclude(i => i.Product).FirstOrDefaultAsync(x => x.UserId == userId);
         return basket;

@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PharmaMVC.Models;
 
 namespace PharmaMVC.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -19,4 +20,15 @@ public class ApplicationDbContext : DbContext
     public DbSet<SalesItem> SalesItems { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<TransactionItem> TransactionItems { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<AppRole>()
+            .HasData(
+                new AppRole { Id = 1, Name = StaticRoles.User, NormalizedName = StaticRoles.User.ToUpper() },
+                new AppRole { Id = 2, Name = StaticRoles.Admin, NormalizedName = StaticRoles.Admin.ToUpper() }
+            );
+    }
 }

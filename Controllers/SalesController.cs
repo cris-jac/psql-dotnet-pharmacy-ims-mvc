@@ -106,7 +106,7 @@ public class SalesController : Controller
 
     [HttpPost]
     public async Task<ActionResult> UpdateSaleItemQuantity(
-        string userId, int productId, int updateQuantityBy
+        int userId, int productId, int updateQuantityBy
     )
     {
         var salesViewModel = new SalesViewModel

@@ -12,7 +12,7 @@ public class SalesViewComponent : ViewComponent
     {
         _salesRepository = salesRepository;
     }
-    public async Task<IViewComponentResult> InvokeAsync(string userId)
+    public async Task<IViewComponentResult> InvokeAsync(int userId)
     {
         var basket = await _salesRepository.GetSalesBasket(userId);
         return View(basket);        // Passed to Sales.Default.cshtml

@@ -1,0 +1,44 @@
+@model List<EmployeeViewModel>
+
+@section title {
+    <h3 class="my-4">Empleados</h3>
+    <hr class="my-2">
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover table-striped my-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Numero</th>
+                <th>Cargo</th>
+                <th>Fecha de Inicio</th>
+                <th>Imagen</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.UserName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Phone</td>
+                    <td>@employee.Position</td>
+                    <td>@employee.StartingDate</td>
+                    <td>@employee.PictureUrl</td>
+                    <td>@((employee.IsActive != null) ? "Activo" : "No activo")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

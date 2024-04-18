@@ -28,7 +28,7 @@
                         <div class="d-flex justify-content-center gap-2">
 
                             <form method="post" class="btn-form m-0">
-                                <input type="hidden" name="UserId" value="Tony">
+                                <input type="hidden" name="UserId" value="1">
                                 <input type="hidden" name="ProductId" value="@item.ProductId">
                                 <input type="hidden" name="UpdateQuantityBy" value="-1">
                                 <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
@@ -39,7 +39,7 @@
                             <span class="text-center">@item.Quantity</span>
 
                             <form method="post" class="btn-form m-0">
-                                <input type="hidden" name="UserId" value="Tony">
+                                <input type="hidden" name="UserId" value="1">
                                 <input type="hidden" name="ProductId" value="@item.ProductId">
                                 <input type="hidden" name="UpdateQuantityBy" value="1">
                                 <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
@@ -51,7 +51,7 @@
                     <td>@((item.Product.Price * item.Quantity).ToString("N2"))</td>
                     <td>
                         <form method="post" class="btn-form">
-                            <input type="hidden" name="UserId" value="Tony">
+                            <input type="hidden" name="UserId" value="1">
                             <input type="hidden" name="ProductId" value="@item.ProductId">
                             <input type="hidden" name="UpdateQuantityBy" value="-@item.Quantity">
                             <button type="submit" id="btn-increment-item" class="btn btn-sm rounded-pill p-0">
