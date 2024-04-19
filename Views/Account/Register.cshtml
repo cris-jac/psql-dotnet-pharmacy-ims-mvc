@@ -1,74 +1,85 @@
 @model RegisterViewModel
 
-@section title {
-    <h3 class="my-4">Creacion de cuenta</h3>
-    <hr class="my-2">
+@{
+    Layout = "_AuthLayout";
 }
 
-@if (ViewData.ModelState.IsValid && ViewData.ModelState.Keys.Any(k => k.Contains("Password")))
-{
-    <div class="alert alert-danger" role="alert">
-        <p>No se pudo registrar esta cuenta. Verifique que su password tenga:</p>
-        <ul>
-            <li>Al menos 6 caracteres</li>
-            <li>Letras en mayuscula</li>
-            <li>Letras en minuscula</li>
-            <li>Numeros</li>
-            <li>Caracteres especiales (!, *, -, _, .)</li>
-        </ul>
-    </div>
-}
+<div class="col-lg-6 col-md-8 col-xs-10 border border-dark p-5 bg-light rounded-3 d-flex flex-column gap-2">
 
-<form asp-action="register">
-    <div class="alert alert-danger" role="alert" asp-validation-summary="All"></div>
+    <h3 class="text-center">Registrarse</h3>
+    <hr>
 
-    <div class="my-4">
-        <div class="row mb-1 col-12 mx-auto">
-            <div class="col-lg-2 col-md-3 col-sm-4">
-                <label asp-for="Email" class="col-form-label text-end">Email</label>
-            </div>
-            <div class="col-lg-10 col-md-9 col-sm-8">
-                <input type="text" asp-for="Email" class="form-control">
-            </div>
+    @if (ViewData.ModelState.IsValid && ViewData.ModelState.Keys.Any(k => k.Contains("Password")))
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>No se pudo registrar esta cuenta. Verifique que su password tenga:</p>
+            <ul>
+                <li>Al menos 6 caracteres</li>
+                <li>Letras en mayuscula</li>
+                <li>Letras en minuscula</li>
+                <li>Numeros</li>
+                <li>Caracteres especiales (!, *, -, _, .)</li>
+            </ul>
         </div>
-        <div class="col-12 mx-2 row">
-            <span class="text-danger" asp-validation-for="Email"></span>
-        </div>
-    </div>
+    }
 
-    <div class="my-4">
-        <div class="row mb-1 col-12 mx-auto">
-            <div class="col-lg-2 col-md-3 col-sm-4">
-                <label asp-for="Password" class="col-form-label text-end">Contraseña</label>
-            </div>
-            <div class="col-lg-10 col-md-9 col-sm-8">
-                <input type="password" asp-for="Password" class="form-control">
-            </div>
-        </div>
-        <div class="col-12 mx-2 row">
-            <span class="text-danger" asp-validation-for="Password"></span>
-        </div>
-    </div>
+    <form asp-controller="account" asp-action="register">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert" asp-validation-summary="All"></div>
+        }
 
-    <div class="my-4">
-        <div class="row mb-1 col-12 mx-auto">
-            <div class="col-lg-2 col-md-3 col-sm-4">
-                <label asp-for="ConfirmPassword" class="col-form-label text-end">Confirmar contraseña</label>
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto align-items-center">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Email" class="col-form-label text-start">Email</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="text" asp-for="Email" class="form-control border-dark">
+                </div>
             </div>
-            <div class="col-lg-10 col-md-9 col-sm-8">
-                <input type="password" asp-for="ConfirmPassword" class="form-control">
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Email"></span>
             </div>
         </div>
-        <div class="col-12 mx-2 row">
-            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
-        </div>
-    </div>
 
-    <div class="row mt-5 justify-content-between gap-2">
-        <div class="col d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary rounded-pill" style="width: 120px;">
-                <span style="margin-left: 8px; fs-6">Crear cuenta</span>
-            </button>
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto align-items-center">
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <label asp-for="Password" class="col-form-label text-start">Contraseña</label>
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8">
+                    <input type="password" asp-for="Password" class="form-control border-dark">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="my-4">
+            <div class="row mb-1 col-12 mx-auto align-items-center">
+                <div class="col-md-3 col-sm-4">
+                    <label asp-for="ConfirmPassword" class="col-form-label text-start">Confirmar contraseña</label>
+                </div>
+                <div class="col-md-9 col-sm-8">
+                    <input type="password" asp-for="ConfirmPassword" class="form-control border-dark">
+                </div>
+            </div>
+            <div class="col-12 mx-2 row">
+                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-between gap-2">
+            <div class="col d-flex justify-content-center">
+                <button type="submit" class="btn btn-dark rounded-pill pill-button-200">
+                    <span style="margin-left: 8px; fs-6">Crear cuenta</span>
+                </button>
+            </div>
+        </div>
+
+        <p class="pt-4 mb-0 text-end small">Si ya estas registrado, <a asp-action="login">inicia sesion</a></p>
+    </form>
+
+</div>

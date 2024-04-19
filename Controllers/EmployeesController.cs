@@ -50,7 +50,7 @@ public class EmployeesController : Controller
         return View(employeeList);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet, Route("/employees/{id}")]
     public async Task<IActionResult> Details(int id)
     {
         var user = await _employeeRepository.GetUserById(id);
@@ -88,9 +88,11 @@ public class EmployeesController : Controller
 
         var editUserViewModel = new EditUserViewModel
         {
-            FirstName = user.UserName,
-            LastName = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             UserName = user.UserName,
+            DocumentType = user.DocumentType,
+            DocumentNumber = user.DocumentNumber,
             Email = user.Email,
             Phone = user.PhoneNumber,
             PictureUrl = user.PictureUrl
@@ -119,8 +121,11 @@ public class EmployeesController : Controller
         user.Email = editUserViewModel.Email;
         user.UserName = editUserViewModel.UserName;
         user.PictureUrl = editUserViewModel.PictureUrl;
-        // user.FirstName = editUserViewModel.FirstName;
-        // user.LastName = editUserViewModel.LastName;
+        user.FirstName = editUserViewModel.FirstName;
+        user.LastName = editUserViewModel.LastName;
+        user.UserName = editUserViewModel.UserName;
+        user.DocumentType = editUserViewModel.DocumentType;
+        user.DocumentNumber = editUserViewModel.DocumentNumber;
 
         await _userManager.UpdateAsync(user);
         return RedirectToAction("Details", "Employees", new { user.Id });

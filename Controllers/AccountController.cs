@@ -24,6 +24,7 @@ public class AccountController : Controller
         _dbContext = dbContext;
     }
 
+    // [HttpGet, Route("/login")]
     public IActionResult Login()
     {
         var loginViewModel = new LoginViewModel();
@@ -58,6 +59,7 @@ public class AccountController : Controller
         return View(loginViewModel);
     }
 
+    // [HttpGet, Route("/register")]
     public IActionResult Register()
     {
         var registerViewModel = new RegisterViewModel();
