@@ -13,7 +13,7 @@
 
     <div class="my-4">
         <h5 class="fw-bolder">Responsable de venta</h5>
-        <h6>@Model.UserId</h6>
+        <h6>@Model.User.UserName</h6>
     </div>
 
     <div class="my-4">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="my-4">
-        <h5 class="fw-bolder">Monto total</h5>
+        <h5 class="fw-bolder">Monto total (AR$)</h5>
         <h6>@Model.TotalAmount.ToString("N2")</h6>
     </div>
 

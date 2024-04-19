@@ -1,6 +1,36 @@
+@inject UserManager<AppUser> UserManager
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
 @section title {
     <h3 class="my-4">Home page</h3>
     <hr class="my-2">
 }
 
-<h1>This the home content</h1>
+<div class="container d-flex flex-column my-5 justify-content-center gap-2 mx-auto border">
+    <div class="row gap-4 justify-content-center border">
+        <a asp-controller="transactions" asp-action="index"
+            class="col-5 col-md-4 col-lg-3 alert alert-success text-center dashboard-card gap-2">
+            <i class="bi bi-file-earmark-spreadsheet"></i>
+            <p class="fs-4">Ver transacciones</p>
+        </a>
+        <a asp-controller="sales" asp-action="index"
+            class="col-5 col-md-4 col-lg-3 alert alert-success text-center dashboard-card gap-2">
+            <i class="bi bi-cart-plus"></i>
+            <p class="fs-4">Nueva venta</p>
+        </a>
+    </div>
+    <div class="row gap-4 justify-content-center">
+        <a asp-controller="home" asp-action="salesbyperiod"
+            class="col-5 col-md-4 col-lg-3 alert alert-success text-center dashboard-card gap-2">
+            <i class="bi bi-graph-up"></i>
+            <p class="fs-4">Ver datos</p>
+        </a>
+        <a asp-controller="employees" asp-action="details" asp-route-id="@currentUser.Id"
+            class="col-5 col-md-4 col-lg-3 alert alert-success text-center dashboard-card gap-2">
+            <i class="bi bi-person-vcard"></i>
+            <p class="fs-4">Modificar perfil</p>
+        </a>
+    </div>
+</div>

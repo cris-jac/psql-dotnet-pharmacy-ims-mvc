@@ -6,5 +6,6 @@
 </div>
 <div class="mt-2 mx-2 d-flex gap-2">
     <label asp-for="Price" class="col-6 col-sm-4 col-md-3"></label>
-    <input asp-for="Price" readonly type="text" class="col-6 col-sm-8 col-md-9">
+    <input asp-for="Price" readonly type="text" class="col-6 col-sm-8 col-md-9"
+        placeholder="(double)Price*(1+((double)Tax.Rate/100))">
 </div>

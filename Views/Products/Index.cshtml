@@ -12,7 +12,8 @@
             <tr>
                 <th>Codigo SKU</th>
                 <th class="d-none d-md-table-cell">Nombre</th>
-                <th>Precio ($)</th>
+                <th>Precio Unitario (AR$)</th>
+                <th>Precio Final (AR$)</th>
                 <th>Stock</th>
                 <th class="d-none d-md-table-cell">Subcategoria</th>
                 <th class="d-none d-md-table-cell">Marca</th>
@@ -28,7 +29,10 @@
                 <tr>
                     <td>@product.SKU</td>
                     <td class="d-none d-md-table-cell">@product.Name</td>
-                    <td>@product.Price</td>
+                    <td>@product.Price.ToString("N2")</td>
+                    <td>@((product.Tax != null) ? ((decimal)product.Price * (1 + ((decimal)product.Tax.Rate /
+                            100))).ToString("N2") :
+                            product.Price.ToString("N2"))</td>
                     <td>@product.Stock</td>
                     <td class="d-none d-md-table-cell">@product.Subcategory?.Name</td>
                     <td class="d-none d-md-table-cell">@product.Brand?.Name</td>

@@ -1,0 +1,45 @@
+@* @model IEnumerable<DataSalesPerMonthViewModel> *@
+
+@* @{
+var data =
+} *@
+
+@section title {
+    <h3 class="my-4">Transacciones durante el periodo</h3>
+    <hr>
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div>
+    <canvas id="my-chart"></canvas>
+</div>
+
+
+
+<script>
+    var transactions = @Html.Raw(ViewBag.TransactionData);
+
+    const ctx = document.getElementById("my-chart");
+
+    var labels = [];
+    var countData = [];
+
+    transactions.forEach(function (t) {
+        labels.push(t.Month);
+        countData.push(t.SalesCount);
+    })
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '# of transactions',
+                data: countData,
+                borderWidth: 1
+            }]
+        }
+    })
+</script>
